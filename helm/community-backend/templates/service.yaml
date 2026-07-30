@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: community-backend
+  labels:
+    app: community
+    tier: backend
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: community
+    tier: backend
+  ports:
+    - name: http
+      port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP

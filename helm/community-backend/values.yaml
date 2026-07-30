@@ -1,0 +1,37 @@
+replicaCount: 2
+
+image:
+  repository: registry.howareyoujake.com/community-backend
+  tag: v2
+  pullPolicy: IfNotPresent
+
+imagePullSecrets:
+  - name: registry-credentials
+
+service:
+  type: ClusterIP
+  port: 8080
+  targetPort: 8080
+
+existingSecret:
+  name: community-backend-secret
+
+config:
+  springDatasourceUrl: "jdbc:mysql://172.31.78.82:3306/community_crud?serverTimezone=Asia/Seoul&characterEncoding=UTF-8"
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+  limits:
+    cpu: "1"
+    memory: 1Gi
+
+strategy:
+  maxSurge: 1
+  maxUnavailable: 0
+
+ingress:
+  enabled: true
+  className: nginx
+  host: api.howareyoujake.com

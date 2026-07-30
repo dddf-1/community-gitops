@@ -1,0 +1,9 @@
+apiVersion: v2
+name: community-backend
+description: A Helm chart for Sports Community Backend
+
+type : application
+
+version : 0.1.0
+
+appVersion : "v2"
